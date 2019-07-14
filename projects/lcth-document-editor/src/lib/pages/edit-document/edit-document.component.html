@@ -4,14 +4,14 @@
            [nzZIndex]="1000"
            [nzVisible]="inputObject"
            [nzTitle]="title || 'Document'"
-           (nzOnClose)="inputObject = null; outputObject = null">
-  <lcth-document-editor-object-form *ngIf="formObject && inputObject"
-                                    [formObject]="formObject"
+           (nzOnClose)="closeDrawer()">
+  <lcth-document-editor-object-form *ngIf="documentFormModel && inputObject"
+                                    [formObject]="documentFormModel"
                                     [object]="inputObject"
                                     (ngModelChange)="outputObject = $event"></lcth-document-editor-object-form>
   <div class="footer">
     <button type="button"
-            (click)="inputObject = null; outputObject = null"
+            (click)="closeDrawer()"
             class="ant-btn"
             style="margin-right: 8px;"><span>Annuler</span></button>
     <button type="button"

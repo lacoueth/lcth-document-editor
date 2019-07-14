@@ -13,9 +13,7 @@
     "npm_pack": "cd dist/lcth-document-editor && npm pack",
     "package": "npm run build_lib && npm run npm_pack",
     "build_app": "ng build lcth-document-editor-app --prod",
-    "serve": "ng serve lcth-document-editor-app --port=4202",
-    "version": "git add -A src",
-    "postversion": "git push && git push --tags"
+    "serve": "ng serve lcth-document-editor-app --port=4202"
   },
   "private": true,
   "dependencies": {

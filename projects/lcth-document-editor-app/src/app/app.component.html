@@ -1,0 +1,9 @@
+<div class="main-container">
+  <!-- <h2>Form</h2> -->
+  <lcth-document-editor-object-form [formObject]="testObject"
+                                    (ngModelChange)="outputObject = $event; log($event)">
+  </lcth-document-editor-object-form>
+
+  <!-- <h2>Result</h2> -->
+  <pre>{{outputObject | json}}</pre>
+</div>

@@ -2,5 +2,176 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "lcth-document-editor-app": {
+      "root": "projects/lcth-document-editor-app/",
+      "sourceRoot": "projects/lcth-document-editor-app/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/lcth-document-editor-app",
+            "index": "projects/lcth-document-editor-app/src/index.html",
+            "main": "projects/lcth-document-editor-app/src/main.ts",
+            "polyfills": "projects/lcth-document-editor-app/src/polyfills.ts",
+            "tsConfig": "projects/lcth-document-editor-app/tsconfig.app.json",
+            "assets": [
+              "projects/lcth-document-editor-app/src/favicon.ico",
+              "projects/lcth-document-editor-app/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "projects/lcth-document-editor-app/src/theme.less",
+              "projects/lcth-document-editor-app/src/styles.css"
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/lcth-document-editor-app/src/environments/environment.ts",
+                  "with": "projects/lcth-document-editor-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "lcth-document-editor-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "lcth-document-editor-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "lcth-document-editor-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lcth-document-editor-app/src/test.ts",
+            "polyfills": "projects/lcth-document-editor-app/src/polyfills.ts",
+            "tsConfig": "projects/lcth-document-editor-app/tsconfig.spec.json",
+            "karmaConfig": "projects/lcth-document-editor-app/karma.conf.js",
+            "styles": [
+              "projects/lcth-document-editor-app/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/lcth-document-editor-app/src/favicon.ico",
+              "projects/lcth-document-editor-app/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lcth-document-editor-app/tsconfig.app.json",
+              "projects/lcth-document-editor-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "lcth-document-editor-app-e2e": {
+      "root": "projects/lcth-document-editor-app-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/lcth-document-editor-app-e2e/protractor.conf.js",
+            "devServerTarget": "lcth-document-editor-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lcth-document-editor-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/lcth-document-editor-app-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "lcth-document-editor": {
+      "root": "projects/lcth-document-editor",
+      "sourceRoot": "projects/lcth-document-editor/src",
+      "projectType": "library",
+      "prefix": "lcth-document-editor",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/lcth-document-editor/tsconfig.lib.json",
+            "project": "projects/lcth-document-editor/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lcth-document-editor/src/test.ts",
+            "tsConfig": "projects/lcth-document-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/lcth-document-editor/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/lcth-document-editor/tsconfig.lib.json",
+              "projects/lcth-document-editor/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "lcth-document-editor-app"
 }

@@ -1,0 +1,27 @@
+.prop-row {
+  padding: 5px;
+}
+
+.property-name {
+  padding: 0px 0 11px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+
+  small {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-family: monospace;
+    opacity: 0.5;
+  }
+}
+
+h3 {
+  padding-bottom: 5px;
+  margin: 42px 5px 8px 5px;
+  border-bottom: 1px solid #f5f5f5;
+}

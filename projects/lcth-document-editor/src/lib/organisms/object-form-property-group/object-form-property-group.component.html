@@ -1,0 +1,83 @@
+<ng-container *ngFor="let property of properties">
+   <lcth-document-editor-object-form-property *ngIf="!property.arrayOf && !property.subObject"
+                                              [property]="property"
+                                              [object]="object"
+                                              (ngModelChange)="formPropertyChange($event, property)">
+   </lcth-document-editor-object-form-property>
+   <div nz-row
+        class="ant-row"
+        *ngIf="property.arrayOf">
+      <div nz-col
+           nzSpan="4">
+         <span class="property-name"
+               [title]="property.label">{{property.label}}<small [title]="property.id">{{property.id}}</small></span>
+      </div>
+      <div nz-col
+           nzSpan="24"
+           class="array-of-properties sub-properties">
+         <div *ngFor="let item of object[property.id]; let i = index; let l = last"
+              class="sub-properties sub-property-group">
+            <lcth-document-editor-object-form-property-group [properties]="property.arrayOf"
+                                                             [object]="item"
+                                                             (ngModelChange)="formPropertyGroupChange($event, property, i)">
+            </lcth-document-editor-object-form-property-group>
+            <div class="item-buttons">
+               <button nz-button
+                       (click)="moveItem(property, i, i-1)"
+                       [disabled]="i === 0"
+                       nzType="default"
+                       nzShape="circle"><i nz-icon
+                     nzType="arrow-up"></i></button>
+               <button nz-button
+                       (click)="moveItem(property, i, i+1)"
+                       [disabled]="l"
+                       nzType="default"
+                       nzShape="circle"><i nz-icon
+                     nzType="arrow-down"></i></button>
+               <button nz-button
+                       nz-popconfirm
+                       nzTitle="Confirmer la suppression de l'item."
+                       nzOkText="Supprimer"
+                       nzCancelText="Annuler"
+                       (nzOnConfirm)="deleteItem(property, i)"
+                       (nzOnCancel)="''"
+                       nzType="danger"
+                       nzShape="circle"><i nz-icon
+                     nzType="delete"></i></button>
+            </div>
+         </div>
+         <button nz-button
+                 nzType="primary"
+                 (click)="addItem(property.id)">+</button>
+      </div>
+   </div>
+   <ng-container *ngIf="property.subObject">
+      <div nz-row
+           class="ant-row"
+           *ngIf="property.subObject">
+         <div nz-col
+              nzSpan="4">
+            <span class="property-name"
+                  [title]="property.label">{{property.label}}<small [title]="property.id">{{property.id}}</small></span>
+         </div>
+         <div nz-col
+              nzSpan="20">
+            <button nz-button
+                    style="margin: 2px 0"
+                    nzType="dashed"
+                    nzShape="circle"
+                    (click)="expand[property.id] = expand[property.id] ? false : true"><i nz-icon
+                  [nzType]="expand[property.id] ? 'up' : 'down'"></i></button>
+         </div>
+         <div nz-col
+              *ngIf="expand[property.id]"
+              nzSpan="24"
+              class="sub-properties">
+            <lcth-document-editor-object-form-property-group [properties]="property.subObject"
+                                                             [object]="object[property.id] || {}"
+                                                             (ngModelChange)="formPropertyChange($event, property)">
+            </lcth-document-editor-object-form-property-group>
+         </div>
+      </div>
+   </ng-container>
+</ng-container>

@@ -1,0 +1,11 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/lcth-document-editor",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "lcth-editor": "lcth-editor",
+      "ng-zorro-antd": "ng-zorro-antd"
+    }
+  }
+}

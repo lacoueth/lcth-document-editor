@@ -1,0 +1,27 @@
+{
+  "name": "lcth-document-editor",
+  "version": "0.0.0",
+  "peerDependencies": {
+    "@angular/common": "^7.2.0",
+    "@angular/core": "^7.2.0",
+    "@angular/forms": "^7.2.0",
+    "ng-zorro-antd": "^7.2.0",
+    "lcth-editor": "^0.0.1",
+    "rxjs": "~6.3.3"
+  },
+  "dependencies": {},
+  "main": "bundles/lcth-document-editor.umd.js",
+  "module": "fesm5/lcth-document-editor.js",
+  "es2015": "fesm2015/lcth-document-editor.js",
+  "esm5": "esm5/lcth-document-editor.js",
+  "esm2015": "esm2015/lcth-document-editor.js",
+  "fesm5": "fesm5/lcth-document-editor.js",
+  "fesm2015": "fesm2015/lcth-document-editor.js",
+  "typings": "lcth-document-editor.d.ts",
+  "metadata": "lcth-document-editor.metadata.json",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lacoueth/lcth-document-editor.git"
+  }
+}

@@ -1,0 +1,74 @@
+<h3 *ngIf="property.type === 'separator'">{{property.label}}</h3>
+
+<div *ngIf="property.type !== 'separator'"
+     nz-row
+     class="prop-row"
+     nzGutter="10">
+       <div nz-col
+            nzSpan="4"
+            style="height: 32px">
+              <span class="property-name"
+                    [title]="property.label">{{property.label}}<small
+                            [title]="property.id">{{property.id}}</small></span>
+       </div>
+       <div nz-col
+            style="padding: 0 1px"
+            nzSpan="20">
+              <nz-select *ngIf="property.type === 'uniqchoice'"
+                         style="width: 100%;"
+                         nzShowSearch
+                         [disabled]="property.disabled"
+                         nzAllowClear
+                         [nzPlaceHolder]="property.placeholder || ''"
+                         [ngModel]="object[property.id] || property.defaultValue || ''"
+                         (ngModelChange)="ngModelChange.emit($event)">
+                     <nz-option *ngFor="let option of property.options"
+                                [nzLabel]="option.label"
+                                [nzValue]="option.value"></nz-option>
+              </nz-select>
+              <input *ngIf="property.type === 'string'"
+                     nz-input
+                     [disabled]="property.disabled"
+                     [placeholder]="property.placeholder || ''"
+                     [(ngModel)]="object[property.id]"
+                     (ngModelChange)="ngModelChange.emit($event)" />
+              <textarea *ngIf="property.type === 'longstring'"
+                        nz-input
+                        [disabled]="property.disabled"
+                        [placeholder]="property.placeholder || ''"
+                        [(ngModel)]="object[property.id]"
+                        [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+                        (ngModelChange)="ngModelChange.emit($event)"></textarea>
+              <nz-input-number *ngIf="property.type === 'number'"
+                               style="width: 100%;"
+                               [disabled]="property.disabled"
+                               placeholder="Quantité"
+                               [(ngModel)]="object[property.id]"
+                               (ngModelChange)="ngModelChange.emit($event)"></nz-input-number>
+
+              <lcth-editor *ngIf="property.type === 'richtext'"
+                           [initialValue]="object[property.id] || ''"
+                           [style]="{'focus-color': '#40a9ff'}"
+                           (ngModelChange)="ngModelChange.emit($event)"></lcth-editor>
+
+              <nz-date-picker *ngIf="property.type === 'date'"
+                              [(ngModel)]="object[property.id]"
+                              (ngModelChange)="ngModelChange.emit($event)"></nz-date-picker>
+
+              <nz-range-picker *ngIf="property.type === 'daterange'"
+                               [(ngModel)]="object[property.id]"
+                               (ngModelChange)="ngModelChange.emit($event)"></nz-range-picker>
+
+              <nz-time-picker *ngIf="property.type === 'time'"
+                              [(ngModel)]="object[property.id]"
+                              nzFormat="HH:mm"
+                              (ngModelChange)="ngModelChange.emit($event)"></nz-time-picker>
+
+              <nz-time-picker *ngIf="property.type === 'timefull'"
+                              [(ngModel)]="object[property.id]"
+                              (ngModelChange)="ngModelChange.emit($event)"></nz-time-picker>
+
+              <small *ngIf="property.hint"
+                     style="color: #777">{{property.hint}}</small>
+       </div>
+</div>

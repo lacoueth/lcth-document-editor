@@ -1,0 +1,43 @@
+<h1>{{collection.title}}</h1>
+
+<button nz-button
+        nzType="primary"
+        (click)="inputObject = {}">Nouveau</button>
+
+<ng-container *ngIf="dataSet | async as data">
+  <div *ngIf="collection.itemComponent"
+       class="d-container">
+    <lcth-document-editor-document-template *ngFor="let d of data"
+                                            (click)="editObject(d)"
+                                            [component]="collection.itemComponent"
+                                            [data]="d"></lcth-document-editor-document-template>
+  </div>
+  <ng-container *ngIf="collection.listComponent">
+    <lcth-document-editor-document-template (edit)="editObject($event)"
+                                            [component]="collection.listComponent"
+                                            [data]="data"></lcth-document-editor-document-template>
+  </ng-container>
+</ng-container>
+
+<nz-drawer [nzBodyStyle]="{ height: 'calc(100% - 55px)', overflow: 'auto', 'padding-bottom': '53px' }"
+           [nzMaskClosable]="false"
+           [nzWidth]="820"
+           [nzZIndex]="1000"
+           [nzVisible]="inputObject"
+           [nzTitle]="collection.itemTitle"
+           (nzOnClose)="inputObject = null; outputObject = null">
+  <lcth-document-editor-object-form *ngIf="formObject && inputObject"
+                                    [formObject]="formObject"
+                                    [object]="inputObject"
+                                    (ngModelChange)="outputObject = $event"></lcth-document-editor-object-form>
+  <div class="footer">
+    <button type="button"
+            (click)="inputObject = null; outputObject = null"
+            class="ant-btn"
+            style="margin-right: 8px;"><span>Annuler</span></button>
+    <button type="button"
+            [disabled]="!outputObject"
+            (click)="saveObject()"
+            class="ant-btn ant-btn-primary"><span>Enregistrer</span></button>
+  </div>
+</nz-drawer>

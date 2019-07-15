@@ -62,8 +62,15 @@ export class AppComponent {
       {
         label: 'Multiple choice',
         id: 'multiplechoice',
-        type: 'string',
-        disabled: true
+        type: 'multiplechoice',
+        options: [
+          { label: 'Choice 1', value: 'choice_1' },
+          { label: 'Choice 2', value: 'choice_2' },
+          { label: 'Choice 3', value: 'choice_3' },
+          { label: 'Choice 4', value: 'choice_4' },
+          { label: 'Choice 5', value: 'choice_5' },
+          { label: 'Choice 6', value: 'choice_6' }
+        ]
       },
       {
         label: 'Complex objects',

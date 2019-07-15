@@ -26,6 +26,19 @@
                                 [nzLabel]="option.label"
                                 [nzValue]="option.value"></nz-option>
               </nz-select>
+              <nz-select *ngIf="property.type === 'multiplechoice'"
+                         style="width: 100%;"
+                         nzMode="multiple"
+                         nzShowSearch
+                         [disabled]="property.disabled"
+                         nzAllowClear
+                         [nzPlaceHolder]="property.placeholder || ''"
+                         [ngModel]="object[property.id] || []"
+                         (ngModelChange)="ngModelChange.emit($event)">
+                     <nz-option *ngFor="let option of property.options"
+                                [nzLabel]="option.label"
+                                [nzValue]="option.value"></nz-option>
+              </nz-select>
               <input *ngIf="property.type === 'string'"
                      nz-input
                      [disabled]="property.disabled"

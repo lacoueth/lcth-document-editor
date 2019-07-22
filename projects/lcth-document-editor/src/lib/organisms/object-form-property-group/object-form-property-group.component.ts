@@ -1,12 +1,13 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { LcthFormObjectProperty } from '../../models/form-object.model';
+import { properties } from 'ng-zorro-antd';
 
 @Component({
   selector: 'lcth-document-editor-object-form-property-group',
   templateUrl: './object-form-property-group.component.html',
   styleUrls: ['./object-form-property-group.component.scss']
 })
-export class ObjectFormPropertyGroupComponent {
+export class ObjectFormPropertyGroupComponent implements OnInit {
 
   @Input() properties: LcthFormObjectProperty[];
   @Input() object: any;
@@ -15,6 +16,29 @@ export class ObjectFormPropertyGroupComponent {
 
   expand = {};
 
+  ngOnInit() {
+    const tmp = {};
+    for (const e of this.properties) {
+      switch (e.type) {
+        case 'separator':
+          break;
+        case 'array':
+          tmp[e.id] = [];
+          break;
+        case 'multiplechoice':
+          tmp[e.id] = [];
+          break;
+        case 'object':
+          tmp[e.id] = {};
+          break;
+        default:
+          tmp[e.id] = '';
+      }
+    }
+    this.object = { ...tmp, ...this.object };
+    // console.log(this.object);
+  }
+
   addItem(property: string) {
     this.object[property] && this.object[property] instanceof Array ?
       this.object[property] = [...this.object[property], {}]
@@ -22,9 +46,11 @@ export class ObjectFormPropertyGroupComponent {
   }
 
   async formPropertyChange(event, property: LcthFormObjectProperty) {
-    Object.keys(this.object).length ?
-      this.object[property.id] = event
-      : this.object = { [property.id]: event };
+    // console.log(this.object, event, property);
+
+    this.object = { ...this.object, [property.id]: event };
+    /* Object.keys(this.object).length ?
+      : this.object = { [property.id]: event }; */
 
     if (property.onUpdate) {
       await property.onUpdate(event, property);

@@ -86,6 +86,30 @@ export class AppComponent {
             label: 'String',
             id: 'string',
             type: 'string',
+          },
+          {
+            label: 'Object',
+            id: 'object',
+            type: 'object',
+            subObject: [
+              {
+                label: 'String',
+                id: 'string',
+                type: 'string',
+              },
+              {
+                label: 'Object',
+                id: 'object',
+                type: 'object',
+                subObject: [
+                  {
+                    label: 'String',
+                    id: 'string',
+                    type: 'string',
+                  }
+                ]
+              }
+            ]
           }
         ]
       },

@@ -12,7 +12,7 @@ export class DocumentTemplateComponent implements OnInit, OnChanges {
   @Input() data: any;
 
   // @ViewChild(DocumentTemplateHostDirective, { static: true }) => Angular 8
-  @ViewChild(DocumentTemplateHostDirective) templateHost: DocumentTemplateHostDirective;
+  @ViewChild(DocumentTemplateHostDirective, { static: true }) templateHost: DocumentTemplateHostDirective;
 
   @Output() edit = new EventEmitter();
   @Output() open = new EventEmitter();

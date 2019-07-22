@@ -29,7 +29,7 @@
     "@ckeditor/ckeditor5-build-classic": "^12.3.1",
     "core-js": "^2.5.4",
     "lcth-editor": "file:../lcth-editor/dist/lcth-editor/lcth-editor-0.0.1.tgz",
-    "ng-zorro-antd": "^7.2.0",
+    "ng-zorro-antd": "^8.1.0",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

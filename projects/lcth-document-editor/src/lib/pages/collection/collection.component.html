@@ -1,19 +1,22 @@
-<h1>{{collection.title}}</h1>
-
-<button nz-button
-        nzType="primary"
-        (click)="inputObject = {}">Nouveau</button>
-
 <ng-container *ngIf="dataSet | async as data">
-  <div *ngIf="collection.itemComponent"
-       class="d-container">
-    <lcth-document-editor-document-template *ngFor="let d of data"
-                                            (click)="editObject(d)"
-                                            [component]="collection.itemComponent"
-                                            [data]="d"></lcth-document-editor-document-template>
-  </div>
+  <ng-container *ngIf="collection.itemComponent">
+    <h1>{{collection.title}}</h1>
+
+    <button nz-button
+            nzType="primary"
+            (click)="editObject({})">Nouveau</button>
+    <div [class]="containerClassNames">
+      <lcth-document-editor-document-template *ngFor="let d of data"
+                                              (edit)="editObject(d)"
+                                              (delete)="deleteObject(d)"
+                                              [component]="collection.itemComponent"
+                                              [data]="d"></lcth-document-editor-document-template>
+    </div>
+  </ng-container>
   <ng-container *ngIf="collection.listComponent">
     <lcth-document-editor-document-template (edit)="editObject($event)"
+                                            (create)="editObject({})"
+                                            (create)="deleteObject($event)"
                                             [component]="collection.listComponent"
                                             [data]="data"></lcth-document-editor-document-template>
   </ng-container>

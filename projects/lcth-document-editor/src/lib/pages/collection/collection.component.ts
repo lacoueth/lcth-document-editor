@@ -12,6 +12,8 @@ export class LcthCollectionComponent implements OnInit {
   @Input() collection: LcthCollectionBuilder;
   @Input() database: any;
 
+  @Input() containerClassNames: string = '';
+
   dataSet: Observable<any[]>;
 
   inputObject: any;
@@ -26,6 +28,10 @@ export class LcthCollectionComponent implements OnInit {
 
   editObject(obj: any) {
     this.inputObject = { ...obj };
+  }
+
+  deleteObject(obj: any) {
+    console.log('delete', obj);
   }
 
   async saveObject() {

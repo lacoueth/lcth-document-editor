@@ -16,6 +16,8 @@ export class DocumentTemplateComponent implements OnInit, OnChanges {
 
   @Output() edit = new EventEmitter();
   @Output() open = new EventEmitter();
+  @Output() create = new EventEmitter();
+  @Output() delete = new EventEmitter();
 
   componentRef: ComponentRef<any>;
 
@@ -31,6 +33,8 @@ export class DocumentTemplateComponent implements OnInit, OnChanges {
     this.componentRef.instance.data = this.data;
     this.componentRef.instance.edit = (ev: any) => this.edit.emit(ev);
     this.componentRef.instance.open = (ev: any) => this.open.emit(ev);
+    this.componentRef.instance.create = (ev: any) => this.create.emit(ev);
+    this.componentRef.instance.delete = (ev: any) => this.delete.emit(ev);
   }
 
   ngOnChanges() {

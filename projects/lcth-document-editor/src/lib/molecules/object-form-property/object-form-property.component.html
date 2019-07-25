@@ -50,7 +50,7 @@
                         [disabled]="property.disabled"
                         [placeholder]="property.placeholder || ''"
                         [(ngModel)]="object[property.id]"
-                        [nzAutosize]="{ minRows: property.custom.minRows || 2, maxRows: property.custom.maxRows || 6 }"
+                        [nzAutosize]="{ minRows: property.custom?.minRows || 2, maxRows: property.custom?.maxRows || 6 }"
                         (ngModelChange)="ngModelChange.emit($event)"></textarea>
               <nz-input-number *ngIf="property.type === 'number'"
                                style="width: 100%;"

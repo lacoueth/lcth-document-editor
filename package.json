@@ -13,7 +13,7 @@
     "npm_pack": "cd dist/lcth-document-editor && npm pack",
     "package": "npm run build_lib && npm run npm_pack",
     "build_app": "ng build lcth-document-editor-app --prod",
-    "serve": "ng serve lcth-document-editor-app --port=4202",
+    "serve": "ng serve lcth-document-editor-app --port=4202 -o",
     "publish-patch": "sh ./scripts/publish-patch.sh",
     "publish-minor": "sh ./scripts/publish-minor.sh",
     "publish-major": "sh ./scripts/publish-major.sh"

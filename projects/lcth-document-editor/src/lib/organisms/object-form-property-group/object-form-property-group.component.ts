@@ -16,6 +16,10 @@ export class ObjectFormPropertyGroupComponent implements OnInit {
 
   expand = {};
 
+  trackByFn(index: number, object: any) {
+    return 0;
+  }
+
   ngOnInit() {
     const tmp = {};
     for (const e of this.properties) {

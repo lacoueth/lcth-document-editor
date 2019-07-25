@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
+.ck.ck-content.ck-editor__editable.ck-rounded-corners.ck-editor__editable_inline,
+.ck.ck-editor__main {
+  max-height: 200px;
+  max-height: 150px;
+}

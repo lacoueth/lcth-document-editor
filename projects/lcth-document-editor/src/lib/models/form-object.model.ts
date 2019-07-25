@@ -41,6 +41,8 @@ export interface LcthFormObjectProperty {
     subObject?: LcthFormObjectProperty[];
     arrayOf?: LcthFormObjectProperty[];
 
+    custom?: any;
+
     onUpdate?: (
         value: any,
         property: any,
